@@ -213,7 +213,55 @@ body{
     background-color: var(--blue);
 }
 .project-list{
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
+}
+.project-item{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+.project-item-img{
+    width: 250px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 1px solid var(--gray0);
+}
+.project-item-group{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.project-item-img-title-group{
+    margin: 0;
+}
+.project-item-title{
+    margin: 0;
+    color: var(--gray1);
+}
+.project-item-desc{
+    font-size: 14px;
+    color: var(--gray3)
+}
+.project-item-links{
+    display: flex;
+    gap: 0.6rem;
+}
+.project-item-btn{
+    width: 60px;
+    text-decoration: none;
+    text-align: center;
+    color: white;
+    background-color: var(--blue);
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 12px;
+}
+.btn-white{
+    color: var(--blue);
+    background-color: white;
+    border: 1px solid var(--blue);
 }
