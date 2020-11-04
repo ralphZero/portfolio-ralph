@@ -182,3 +182,33 @@ body{
     height: 8px;
     margin: 0;
 }
+/*Projects*/
+.project{
+    margin-top: 20px;
+}
+.card--project{
+    color: var(--gray2);
+}
+.card--project-tags{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+.project-tag{
+    background-color: transparent;
+    border: 1px solid var(--blue);
+    padding: 3px 8px;
+    border-radius: 12px;
+    color: var(--blue);
+    font-size: 14px;
+}
+.project-tag:hover{
+    transition: background-color .5s;
+    background-color: #2f81ed38;
+    cursor: pointer;
+}
+.project-tag:active{
+    color: white;
+    background-color: var(--blue);
+}
