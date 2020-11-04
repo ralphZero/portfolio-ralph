@@ -208,7 +208,12 @@ body{
     background-color: #2f81ed38;
     cursor: pointer;
 }
-.project-tag:active{
+.project-tag-active{
     color: white;
     background-color: var(--blue);
+}
+.project-list{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
