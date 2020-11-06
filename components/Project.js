@@ -20,22 +20,42 @@ class Project extends React.Component {
                 { id: 4, src: 'assets/my_gallery.jpeg', title: 'My Gallery', desc: 'In this project, I work with HTML and CSS to create a responsive page . The design is from devchallenge.io. Donec aliquam est dui, vel vestibulum diam sollicitudin id. Quisque feugiat malesuada molestie. ', demoLink: 'www.link.com', codeLink: 'www.link.com', tags: [3, 4, 5] },
                 { id: 5, src: 'assets/team_page.jpeg', title: 'Team Page', desc: 'In this project, I work with HTML and CSS to create a responsive page . The design is from devchallenge.io. Donec aliquam est dui, vel vestibulum diam sollicitudin id. Quisque feugiat malesuada molestie. ', demoLink: 'www.link.com', codeLink: 'www.link.com', tags: [1, 3, 5] }
             ],
-            data : [],
-            firstPosition : 0,
-            selectedPage : 1
+            data: [],
+            firstPosition: 0,
+            selectedPage: 1,
+            dataSize: 0
         }
         const _list = this.generateList(this.state.firstPosition);
         this.state.data = _list;
+        this.state.dataSize = this.state.list.length;
     }
-    generateList = (position) => {
-        const _list = [...this.state.list].slice(position, position + 3);
+    generateList = (position, dataSource = this.state.list) => {
+        const _list = [...dataSource].slice(position, position + 3);
         return _list;
     }
     handleTagClick = (id) => {
         console.log('you clicked : ' + id);
-        this.setState({
-            selectedTagIndex: id
-        });
+        if (id !== 0) {
+            let newlist = [];
+            this.state.list.forEach(data => {
+                if (data.tags.includes(id)) {
+                    newlist.push(data);
+                }
+            });
+            const listLenght = newlist.length;
+            const i = this.generateList(0, newlist);
+            this.setState({
+                selectedTagIndex: id,
+                data: i,
+                dataSize: listLenght
+            });
+        } else {
+            this.setState({
+                selectedTagIndex: id,
+                data: this.generateList(this.state.firstPosition),
+                dataSize: this.state.list.length
+            });
+        }
     }
     handlePageSelection = (value) => {
         const list = this.generateList(value);
@@ -48,13 +68,88 @@ class Project extends React.Component {
             <div>
                 <ProjectHeader tags={this.state.tags} selectedIndex={this.state.selectedTagIndex} tagClick={this.handleTagClick} count={this.state.list.length} />
                 <ProjectList projects={this.state.data} />
-                <Pagination selectPage={this.handlePageSelection} datalength={this.state.list.length} />
+                <Pagination selectPage={this.handlePageSelection} datalength={this.state.dataSize} />
             </div>
         );
     }
 }
 
-const ProjectList = ({projects}) => {
+class Pagination extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            length: this.props.datalength,
+            indexes: [],
+            selectedPage: 1
+        }
+        var index = [];
+        for (let i = 0; i < this.props.datalength; i++) {
+            if (i % 3 === 0) {
+                index = [...index, i];
+            }
+        }
+        this.state.indexes = index;
+    }
+    componentWillReceiveProps(props){
+        console.log(props, 'New props');
+        var index = [];
+        for (let i = 0; i < props.datalength; i++) {
+            if (i % 3 === 0) {
+                index = [...index, i];
+            }
+        }
+        console.log(index, 'index value');
+        this.setState({
+            indexes : index
+        }, console.log(this.state.indexes, 'indexes'))
+    }
+    handlePageChange = (e) => {
+        let value = e.currentTarget.value;
+        this.props.selectPage(value);
+        this.setState({
+            selectedPage: parseInt(e.currentTarget.innerText)
+        });
+    }
+    handlePrevious = (e) => {
+        if (this.state.selectedPage > 1) {
+            const newIndex = this.state.indexes[this.state.selectedPage - 2];
+            this.props.selectPage(newIndex);
+            const newSelectedPage = this.state.selectedPage - 1;
+            this.setState({
+                selectedPage: newSelectedPage
+            });
+        }
+    }
+    handleNext = (e) => {
+        if (this.state.selectedPage < this.state.indexes.length) {
+            const newIndex = this.state.indexes[this.state.selectedPage];
+            this.props.selectPage(newIndex);
+            const newSelectedPage = this.state.selectedPage + 1;
+            this.setState({
+                selectedPage: newSelectedPage
+            });
+        }
+    }
+    render() {
+        const pages = this.state.indexes.map((value, index) => {
+            let j = index + 1;
+            return this.state.selectedPage === j ? (
+                <button key={index} onClick={this.handlePageChange} className="pagination pagination-number pagination-active" value={value}>{index + 1}</button>
+            ) : (
+                    <button key={index} onClick={this.handlePageChange} className="pagination pagination-number" value={value}>{index + 1}</button>
+                );
+        });
+        return this.state.indexes.length !== 0 ? (
+            <div className="pagination-list">
+                <button className="pagination" onClick={this.handlePrevious}>&larr;</button>
+                {pages}
+                <button className="pagination" onClick={this.handleNext}>&rarr;</button>
+            </div>
+        ) : null;
+    }
+}
+
+const ProjectList = ({ projects }) => {
     const items = projects.map(data => {
         return (
             <div className="card project-item" key={data.id}>
@@ -77,67 +172,6 @@ const ProjectList = ({projects}) => {
             {items}
         </div>
     );
-}
-
-class Pagination extends React.Component {
-    constructor(props) {
-        super(props);
-        var index = [];
-        for (let i = 0; i < this.props.datalength; i++) {
-            if (i % 3 === 0) {
-                index = [...index, i];
-            }
-        }
-        this.state = {
-            length: this.props.datalength,
-            indexes: index,
-            selectedPage: 1
-        }
-    }
-    handlePageChange = (e) => {
-        let value = e.currentTarget.value;
-        this.props.selectPage(value);
-        this.setState({
-            selectedPage : parseInt(e.currentTarget.innerText)
-        });
-    }
-    handlePrevious = (e) => {
-        if(this.state.selectedPage > 1){
-            const newIndex = this.state.indexes[this.state.selectedPage - 2];
-            this.props.selectPage(newIndex);
-            const newSelectedPage = this.state.selectedPage - 1;
-            this.setState({
-                selectedPage : newSelectedPage
-            });
-        }
-    }
-    handleNext = (e) => {
-        if(this.state.selectedPage < this.state.indexes.length){
-            const newIndex = this.state.indexes[this.state.selectedPage];
-            this.props.selectPage(newIndex);
-            const newSelectedPage = this.state.selectedPage + 1;
-            this.setState({
-                selectedPage : newSelectedPage
-            });
-        }
-    }
-    render() {
-        const pages = this.state.indexes.map((value, index) => {
-            let j = index + 1;
-            return this.state.selectedPage === j ? (
-                <button key={index} onClick={this.handlePageChange} className="pagination pagination-number pagination-active" value={value}>{index + 1}</button>
-            ) : (
-                    <button key={index} onClick={this.handlePageChange} className="pagination pagination-number" value={value}>{index + 1}</button>
-                );
-        });
-        return (
-            <div className="pagination-list">
-                <button className="pagination" onClick={this.handlePrevious}>&larr;</button>
-                {pages}
-                <button className="pagination" onClick={this.handleNext}>&rarr;</button>
-            </div>
-        );
-    }
 }
 
 const ProjectHeader = (props) => {
