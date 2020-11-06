@@ -57,6 +57,7 @@ class Project extends React.Component {
             });
         }
     }
+    //todo : tag pagination issue
     handlePageSelection = (value) => {
         const list = this.generateList(value);
         this.setState({
