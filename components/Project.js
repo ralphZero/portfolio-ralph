@@ -34,7 +34,6 @@ class Project extends React.Component {
         return _list;
     }
     handleTagClick = (id) => {
-        console.log('you clicked : ' + id);
         if (id !== 0) {
             let newlist = [];
             this.state.list.forEach(data => {
@@ -66,9 +65,7 @@ class Project extends React.Component {
                     newlist.push(data);
                 }
             });
-            console.log(newlist, 'value nList');
             list = this.generateList(value, newlist);
-            console.log(list, 'value list');
         }else{
             list = this.generateList(value);
         }
