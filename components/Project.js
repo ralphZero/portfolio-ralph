@@ -57,9 +57,21 @@ class Project extends React.Component {
             });
         }
     }
-    //todo : tag pagination issue
     handlePageSelection = (value) => {
-        const list = this.generateList(value);
+        let list;
+        if(this.state.selectedTagIndex !==0){
+            let newlist = [];
+            this.state.list.forEach(data => {
+                if (data.tags.includes(this.state.selectedTagIndex)) {
+                    newlist.push(data);
+                }
+            });
+            console.log(newlist, 'value nList');
+            list = this.generateList(value, newlist);
+            console.log(list, 'value list');
+        }else{
+            list = this.generateList(value);
+        }
         this.setState({
             data: list
         });
@@ -69,7 +81,7 @@ class Project extends React.Component {
             <div>
                 <ProjectHeader tags={this.state.tags} selectedIndex={this.state.selectedTagIndex} tagClick={this.handleTagClick} count={this.state.list.length} />
                 <ProjectList projects={this.state.data} />
-                <Pagination selectPage={this.handlePageSelection} datalength={this.state.dataSize} />
+                <Pagination selectPage={this.handlePageSelection} datalength={this.state.dataSize} currentTag={this.state.selectedTagIndex}/>
             </div>
         );
     }
@@ -81,7 +93,8 @@ class Pagination extends React.Component {
         this.state = {
             length: this.props.datalength,
             indexes: [],
-            selectedPage: 1
+            selectedPage: 1,
+            tag : this.props.currentTag
         }
         var index = [];
         for (let i = 0; i < this.props.datalength; i++) {
@@ -92,17 +105,21 @@ class Pagination extends React.Component {
         this.state.indexes = index;
     }
     componentWillReceiveProps(props){
-        console.log(props, 'New props');
         var index = [];
         for (let i = 0; i < props.datalength; i++) {
             if (i % 3 === 0) {
                 index = [...index, i];
             }
         }
-        console.log(index, 'index value');
         this.setState({
             indexes : index
-        }, console.log(this.state.indexes, 'indexes'))
+        });
+        if(props.currentTag !== this.state.tag){
+            this.setState({
+                selectedPage : 1,
+                tag : props.currentTag
+            })
+        }
     }
     handlePageChange = (e) => {
         let value = e.currentTarget.value;
