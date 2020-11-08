@@ -20,6 +20,7 @@ body{
     display: flex;
     flex-direction: row;
     gap: 1.5em;
+    margin-bottom: 20px;
 }
 .global--left{
     width: calc((100vw - 20vw) - 70%);
@@ -29,7 +30,7 @@ body{
 }
 
 .global--right{
-    width: calc((100vw - 20vw) - 30%);;
+    width: calc((100vw - 20vw) - 30%);
 }
 .card{
     background-color: white;
@@ -301,4 +302,62 @@ body{
     color: var(--gray3);
     background-color: transparent;
     border: 1px solid var(--gray3);
+}
+/*blog*/
+.blog{
+    margin-top: 20px;
+}
+.card--blog-header{
+    color: var(--gray2);
+    margin-bottom: 20px;
+}
+.card--blog-item{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.blog-item{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 50%;
+}
+.blog-item-tag{
+    margin: 0;
+    margin-bottom: 8px;
+    color: var(--gray3);
+}
+.blog-item-title{
+    width: 50%;
+    margin: 0;
+    font-size: 22px;
+    margin-bottom: 8px;
+    color: var(--gray1);
+}
+.blog-item-content{
+    margin: 0;
+    font-size: 12px;
+    margin-bottom: 8px;
+    color: var(--gray2);
+}
+.blog-item-img{
+    height: 12rem;
+}
+.blog-item-link{
+    text-decoration: none;
+    font-size: 14px;
+}
+/*footer*/
+footer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+footer > div{
+    width: 50%;
+    color: var(--gray2);
+    border-top: 1px solid var(--gray2);
+    text-align: center;
+    padding: 25px 0;
 }
