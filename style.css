@@ -67,6 +67,11 @@ body{
     width: 100%;
     height: auto;
     border-radius: 15px;
+
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+    -moz-user-select: none;
 }
 .card--info-contact{
     display: flex;
@@ -286,6 +291,10 @@ body{
     object-fit: cover;
     border-radius: 12px;
     border: 1px solid var(--gray0);
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+    -moz-user-select: none;
 }
 .project-item-group{
     display: flex;
@@ -300,7 +309,7 @@ body{
     color: var(--gray1);
 }
 .project-item-desc{
-    font-size: 14px;
+    font-size: 12px;
     color: var(--gray3)
 }
 .project-item-links{
@@ -316,6 +325,9 @@ body{
     padding: 6px;
     font-size: 12px;
     border-radius: 8px;
+}
+.project-item-tags{
+    color: var(--blue);
 }
 .btn-white{
     color: var(--blue);
@@ -368,6 +380,18 @@ body{
     color: var(--gray3);
     background-color: transparent;
     border: 1px solid var(--gray3);
+}
+.pagination-error{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-bottom: 40px;
+}
+.pagination-error > img{
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+    -moz-user-select: none;
 }
 /*blog*/
 .blog{

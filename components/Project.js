@@ -77,7 +77,7 @@ class Project extends React.Component {
         return (
             <div>
                 <ProjectHeader tags={this.state.tags} selectedIndex={this.state.selectedTagIndex} tagClick={this.handleTagClick} count={this.state.list.length} />
-                <ProjectList projects={this.state.data} />
+                <ProjectList projects={this.state.data} tags={this.state.tags}/>
                 <Pagination selectPage={this.handlePageSelection} datalength={this.state.dataSize} currentTag={this.state.selectedTagIndex}/>
             </div>
         );
@@ -160,16 +160,24 @@ class Pagination extends React.Component {
                 {pages}
                 <button className="pagination" onClick={this.handleNext}>&rarr;</button>
             </div>
-        ) : null;
+        ) : (
+            <div className="pagination-error">
+                 <img src="assets/not-found-icon-4.png" />
+            </div>
+        );
     }
 }
 
-const ProjectList = ({ projects }) => {
+const ProjectList = ({ projects, tags }) => {
     const items = projects.map(data => {
+        const tag = data.tags.map((element) => {
+            return element === tags[element].id ? ("#"+tags[element].title+" ") : null;
+        })
         return (
             <div className="card project-item" key={data.id}>
                 <img className="project-item-img" src={data.src} />
                 <div className="project-item-group">
+                    <small className="project-item-tags">{tag}</small>
                     <div className="project-item-img-title-group">
                         <h3 className="project-item-title">{data.title}</h3>
                         <p className="project-item-desc">{data.desc}</p>
