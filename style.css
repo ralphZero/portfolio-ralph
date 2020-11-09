@@ -16,11 +16,17 @@ body{
     padding: 2vw 10vw 0;
     font-family: 'Monserrat', sans-serif;
 }
+@media screen and (max-width: 768px){
+    body{
+        padding: 2vw 5vw 0;
+    }
+}
 .global{
     display: flex;
     flex-direction: row;
     gap: 1.5em;
     margin-bottom: 20px;
+    justify-content: center;
 }
 .global--left{
     width: calc((100vw - 20vw) - 70%);
@@ -28,10 +34,23 @@ body{
     flex-direction: column;
     row-gap: 1.2rem;
 }
-
 .global--right{
     width: calc((100vw - 20vw) - 30%);
 }
+
+@media screen and (max-width: 768px){
+    .global{
+        flex-direction: column;
+    }
+    .global--left{
+        width: 100%;
+    }
+    .global--right{
+        width: 100%;
+    }
+}
+
+
 .card{
     background-color: white;
     padding: 16px;
@@ -86,6 +105,23 @@ body{
     color: var(--gray3);
     font-size: 0.82em;
 }
+@media screen and (max-width: 768px) and (min-width: 480px){
+    .card--info{
+        display: flex;
+        flex-direction: row;
+        gap: 1em;
+    }
+    .card--info-img{
+        width: 40%;
+        height: auto;
+        min-width: 210px;
+        min-height: 210px;
+        object-fit: cover;
+    }
+    .card--info-bio{
+        margin-top: 10px;
+    }
+}
 /*experience*/
 .card--experience{
     display: flex;
@@ -102,7 +138,6 @@ body{
     gap: 1em;
 }
 .card--experience-job-img{
-    height: auto;
     min-width: 64px;
     max-height: 64px;
     border-radius: 50px;
@@ -148,6 +183,11 @@ body{
     font-size: 14px;
     color: var(--gray3);
 }
+@media screen and (max-width: 768px){
+    .card--hobby-item-img{
+        max-height: 120px;
+    }
+}
 /*skills*/
 .skill{
     margin: 0;
@@ -169,6 +209,7 @@ body{
 .card--skill-group{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    align-items: center;
     gap: 5px;
     color: var(--gray2);
 }
@@ -183,6 +224,20 @@ body{
     height: 8px;
     margin: 0;
 }
+@media screen and (max-width: 768px){
+    .card--skill{
+        width: auto;
+    }
+}
+@media screen and (max-width: 550px){
+    .skill{
+        flex-direction: column;
+        gap: 20px;
+    }
+    .card--skill{
+        width: 100%;
+    }
+}
 /*Projects*/
 .project{
     margin-top: 20px;
@@ -195,6 +250,7 @@ body{
     display: flex;
     flex-direction: row;
     gap: 5px;
+    overflow-x: auto;
 }
 .project-tag{
     background-color: transparent;
@@ -266,6 +322,16 @@ body{
     background-color: white;
     border: 1px solid var(--blue);
 }
+@media screen and (max-width: 550px){
+    .project-item{
+        flex-direction: column;
+    }
+    .project-item-img{
+        width: 100%;
+        height: auto;
+    }
+}
+/*pagination*/
 .pagination-list{
     display: flex;
     flex-direction: row;
@@ -347,6 +413,18 @@ body{
     text-decoration: none;
     font-size: 14px;
 }
+@media screen and (max-width: 550px){
+    .card--blog-item{
+        flex-direction: column-reverse;
+    }
+    .blog-item{
+        width: 100%;
+        margin-top: 1rem;
+    }
+    .blog-item-img{
+        object-fit: cover;
+    }
+}
 /*footer*/
 footer{
     display: flex;
@@ -360,4 +438,9 @@ footer > div{
     border-top: 1px solid var(--gray2);
     text-align: center;
     padding: 25px 0;
+}
+@media screen and (max-width: 768px){
+    footer > div {
+        width: 100%;
+    }
 }
