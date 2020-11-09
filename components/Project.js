@@ -13,12 +13,12 @@ class Project extends React.Component {
             ],
             selectedTagIndex: 0,
             list: [
-                { id: 0, src: 'assets/edie-homepage.jpeg', title: 'Edie Homepage', desc: 'In this project, I work with HTML and CSS to create a responsive page . The design is from devchallenge.io. Donec aliquam est dui, vel vestibulum diam sollicitudin id. Quisque feugiat malesuada molestie. ', demoLink: 'www.link.com', codeLink: 'www.link.com', tags: [1, 3] },
-                { id: 1, src: 'assets/interior_consultant.jpeg', title: 'Interior Consultant', desc: 'In this project, I work with HTML and CSS to create a responsive page . The design is from devchallenge.io. Donec aliquam est dui, vel vestibulum diam sollicitudin id. Quisque feugiat malesuada molestie. ', demoLink: 'www.link.com', codeLink: 'www.link.com', tags: [3, 4, 5] },
-                { id: 2, src: 'assets/recipe_page.jpeg', title: 'Recipe Page', desc: 'In this project, I work with HTML and CSS to create a responsive page . The design is from devchallenge.io. Donec aliquam est dui, vel vestibulum diam sollicitudin id. Quisque feugiat malesuada molestie. ', demoLink: 'www.link.com', codeLink: 'www.link.com', tags: [1, 3, 5] },
-                { id: 3, src: 'assets/checkout_page.jpeg', title: 'Checkout Page', desc: 'In this project, I work with HTML and CSS to create a responsive page . The design is from devchallenge.io. Donec aliquam est dui, vel vestibulum diam sollicitudin id. Quisque feugiat malesuada molestie. ', demoLink: 'www.link.com', codeLink: 'www.link.com', tags: [1, 3] },
-                { id: 4, src: 'assets/my_gallery.jpeg', title: 'My Gallery', desc: 'In this project, I work with HTML and CSS to create a responsive page . The design is from devchallenge.io. Donec aliquam est dui, vel vestibulum diam sollicitudin id. Quisque feugiat malesuada molestie. ', demoLink: 'www.link.com', codeLink: 'www.link.com', tags: [3, 4, 5] },
-                { id: 5, src: 'assets/team_page.jpeg', title: 'Team Page', desc: 'In this project, I work with HTML and CSS to create a responsive page . The design is from devchallenge.io. Donec aliquam est dui, vel vestibulum diam sollicitudin id. Quisque feugiat malesuada molestie. ', demoLink: 'www.link.com', codeLink: 'www.link.com', tags: [1, 3, 5] }
+                { id: 0, src: 'assets/edie-homepage.jpeg', title: 'Edie Homepage', desc: 'In this project, I work with HTML and CSS to create a responsive page . The design is from devchallenge.io. Donec aliquam est dui, vel vestibulum diam sollicitudin id. Quisque feugiat malesuada molestie. ', demoLink: 'https://ralphzero.github.io/edie-homepage/', codeLink: 'https://github.com/ralphZero/edie-homepage', tags: [1, 3] },
+                { id: 1, src: 'assets/interior_consultant.jpeg', title: 'Interior Consultant', desc: 'In this project, I work with HTML and CSS to create a responsive page . The design is from devchallenge.io. Donec aliquam est dui, vel vestibulum diam sollicitudin id. Quisque feugiat malesuada molestie. ', demoLink: 'https://ralphzero.github.io/Interior-Consultant---DevChallengesIO/', codeLink: 'https://github.com/ralphZero/Interior-Consultant---DevChallengesIO', tags: [3, 4, 5] },
+                { id: 2, src: 'assets/recipe_page.jpeg', title: 'Recipe Page', desc: 'In this project, I work with HTML and CSS to create a responsive page . The design is from devchallenge.io. Donec aliquam est dui, vel vestibulum diam sollicitudin id. Quisque feugiat malesuada molestie. ', demoLink: 'https://ralphzero.github.io/Recipe-page---DevChallengesIO/', codeLink: 'https://github.com/ralphZero/Recipe-page---DevChallengesIO', tags: [1, 3, 5] },
+                { id: 3, src: 'assets/checkout_page.jpeg', title: 'Checkout Page', desc: 'In this project, I work with HTML and CSS to create a responsive page . The design is from devchallenge.io. Donec aliquam est dui, vel vestibulum diam sollicitudin id. Quisque feugiat malesuada molestie. ', demoLink: 'https://ralphzero.github.io/Checkout-page---DevChallengesIO/', codeLink: 'https://https//github.com/ralphZero/Checkout-page---DevChallengesIO/', tags: [1, 3] },
+                { id: 4, src: 'assets/my_gallery.jpeg', title: 'My Gallery', desc: 'In this project, I work with HTML and CSS to create a responsive page . The design is from devchallenge.io. Donec aliquam est dui, vel vestibulum diam sollicitudin id. Quisque feugiat malesuada molestie. ', demoLink: 'https://ralphzero.github.io/My-Gallery---DevChallengesIO/', codeLink: 'https://github.com/ralphZero/My-Gallery---DevChallengesIO', tags: [3, 4, 5] },
+                { id: 5, src: 'assets/team_page.jpeg', title: 'Team Page', desc: 'In this project, I work with HTML and CSS to create a responsive page . The design is from devchallenge.io. Donec aliquam est dui, vel vestibulum diam sollicitudin id. Quisque feugiat malesuada molestie. ', demoLink: 'https://ralphzero.github.io/My-team-page---DevChallengesIO/', codeLink: 'https://github.com/ralphZero/My-team-page---DevChallengesIO', tags: [1, 3, 5] }
             ],
             data: [],
             firstPosition: 0,
@@ -183,8 +183,8 @@ const ProjectList = ({ projects, tags }) => {
                         <p className="project-item-desc">{data.desc}</p>
                     </div>
                     <div className="project-item-links">
-                        <a href={data.demoLink} className="project-item-btn">Demo</a>
-                        <a href={data.codeLink} className="project-item-btn btn-white">Code</a>
+                        <a target="_blank" href={data.demoLink} className="project-item-btn">Demo</a>
+                        <a target="_blank" href={data.codeLink} className="project-item-btn btn-white">Code</a>
                     </div>
                 </div>
             </div>
